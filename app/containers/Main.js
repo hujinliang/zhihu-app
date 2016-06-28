@@ -2,6 +2,9 @@
  * Created by jialao on 2016/6/28.
  */
 import React,{Component} from 'react'
+import Header from '../components/header'
+import H2 from '../components/H2'
+
 
 export default class Main extends Component{
     
@@ -9,7 +12,8 @@ export default class Main extends Component{
         var {children} = this.props;
         return (
             <div>
-                HelloWorld
+                <Header />
+                <H2 />
                 {children}
             </div>
         )
