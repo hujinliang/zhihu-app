@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react'
 import Header from '../components/header'
-import H2 from '../components/H2'
+
 
 
 export default class Main extends Component{
@@ -13,7 +13,6 @@ export default class Main extends Component{
         return (
             <div>
                 <Header />
-                <H2 />
                 {children}
             </div>
         )

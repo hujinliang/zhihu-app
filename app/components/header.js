@@ -10,7 +10,10 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import ContentFilter from 'material-ui/svg-icons/content/filter-list';
 
+
+import AboutDialog from './aboutDialog'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as Actions from '../actions'
@@ -41,15 +44,40 @@ const AppBarIconMenu = ({
 }
 
 class Header extends React.Component{
+    constructor(props){
+        super(props);
+
+    }
+    componentDidMount(){
+        this.props.actions.LOAD_THEMES_LIST_DATA();
+    }
+    handleClickBtn(){
+        this.props.actions.OPEN_DRAWER()
+    }
+    handleChangeTheme(id){
+        this.context.router.push(`/theme/${id}`)
+    }
+    handleCloseToHome(){
+        this.context.router.push(`/`);
+    }
     getChildContext() {
         return { muiTheme: getMuiTheme(baseTheme) };
     }
     render(){
         return (
-            <div>header
-                <AppBarIconMenu style={{position: 'fixed'}} />
-            </div>
+            <header>
+                <AppBarIconMenu 
+                    style={{position:'fixed'}}
+                    handleClick={this.handleClickBtn}
+                    {...this.props.actions}
+                />
 
+                <AboutDialog 
+                    
+                    open={this.props.UIState.isDialogOpen}
+                    {...this.props.actions}
+                />
+            </header>
         )
     }
 }
@@ -63,9 +91,12 @@ Header.contextTypes = {
 }
 
 
+
+
 const mapStateToProps = (state) =>{
     return {
-
+        UIState:state.UIState,
+        themesList:state.themesList
     }
 };
 
@@ -75,4 +106,7 @@ const mapDispatchToProps = (dispatch) =>{
     }
 }
 
-export default Header
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header)
