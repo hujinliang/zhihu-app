@@ -42,10 +42,27 @@ function getThem(req,res){
         })
 }
 
+function getExtra(req,res){
+    axios.get('http://news-at.zhihu.com/api/4/story-extra/'+req.query.id)
+        .then(function(data){
+            console.log(data);
+            res.send(data);
+        })
+}
+
+function getHot(req,res){
+    axios.get('http://news-at.zhihu.com/api/3/news/hot')
+        .then(function(data){
+            res.send(data);
+        })
+}
+
 module.exports = {
     getList,
     getHistoryStory,
     getDetial,
     getThemes,
-    getThem
+    getThem,
+    getExtra,
+    getHot
 }

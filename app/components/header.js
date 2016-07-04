@@ -8,11 +8,11 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import baseTheme from 'material-ui/styles/baseThemes/DarkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import ContentFilter from 'material-ui/svg-icons/content/filter-list';
+import {green100, green500, green700} from 'material-ui/styles/colors';
 
-
+import Drawer from './drawer'
 import AboutDialog from './aboutDialog'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -24,8 +24,8 @@ const AppBarIconMenu = ({
 }) => {
     return (
         <AppBar
-            title="知乎日报"
-            titleStyle={{textAlign: 'center'}}
+            title="知乎"
+            titleStyle={{textAlign: 'left'}}
             style={{position: 'fixed'}}
             iconElementLeft={
 	    	<IconButton onClick={handleClick}><ExpandMoreIcon /></IconButton>
@@ -46,6 +46,9 @@ const AppBarIconMenu = ({
 class Header extends React.Component{
     constructor(props){
         super(props);
+        this.handleClickBtn = this.handleClickBtn.bind(this)
+        this.handleChangeThemes = this.handleChangeThemes.bind(this)
+        this.handleCloseToHome = this.handleCloseToHome.bind(this)
 
     }
     componentDidMount(){
@@ -54,14 +57,20 @@ class Header extends React.Component{
     handleClickBtn(){
         this.props.actions.OPEN_DRAWER()
     }
-    handleChangeTheme(id){
+    handleChangeThemes(id){
         this.context.router.push(`/theme/${id}`)
     }
     handleCloseToHome(){
         this.context.router.push(`/`);
     }
     getChildContext() {
-        return { muiTheme: getMuiTheme(baseTheme) };
+        return { muiTheme: getMuiTheme({
+            palette: {
+                primary1Color: green500,
+                primary2Color: green700,
+                primary3Color: green100,
+            },
+        }) };
     }
     render(){
         return (
@@ -76,6 +85,13 @@ class Header extends React.Component{
                     
                     open={this.props.UIState.isDialogOpen}
                     {...this.props.actions}
+                />
+                <Drawer
+                    open={this.props.UIState.isDrawerOpen}
+                    {...this.props.actions}
+                    list={this.props.themesList}
+                    onChangeRouter={this.handleChangeThemes}
+                    handleCloseToHome={this.handleCloseToHome}
                 />
             </header>
         )

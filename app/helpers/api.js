@@ -45,3 +45,12 @@ export function getTheme(id) {
 	})
 }
 
+export function getHot(){
+    return axios({
+        method:'GET',
+        url:'/api/hot'
+    }).then(function(data){
+        return data.data;
+    })
+}
+

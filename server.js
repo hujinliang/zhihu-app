@@ -10,6 +10,8 @@ var getHistoryStory = require('./serverAPI/api').getHistoryStory;
 var getDetail = require('./serverAPI/api').getDetial;
 var getThems = require('./serverAPI/api').getThemes;
 var getThem = require('./serverAPI/api').getThem;
+var getExtra = require('./serverAPI/api').getExtra;
+var getHot = require('./serverAPI/api').getHot;
 
 var port = process.env.PORT || 3000;
 
@@ -27,6 +29,8 @@ app.get('/api/history',getHistoryStory);
 app.get('/api/detail',getDetail);
 app.get('/api/themeList',getThems);
 app.get('/api/theme',getThem);
+app.get('/api/extra',getExtra);
+app.get('/api/hot',getHot);
 
 app.get('*',function(req,res){
 

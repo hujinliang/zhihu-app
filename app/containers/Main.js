@@ -7,6 +7,10 @@ import Header from '../components/header'
 
 
 export default class Main extends Component{
+
+    constructor(props, context) {
+        super(props, context)
+    }
     
     render(){
         var {children} = this.props;
