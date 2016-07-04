@@ -2,22 +2,36 @@ import { getLatestStory, getHistoryStory, getDetail, getThemesList, getTheme,get
 
 export const GET_LATEST_DATA = () => {
 	return ( dispatch, getStore ) => {
-		if(getStore().today.length > 0) {
+		if(getStore().mainList.length > 0) {
 			return;
 		}
 		getLatestStory().then(data => {
-			dispatch(GET_TODAY(data))
+            console.log(data)
+			dispatch(GET_LATEST(data))
+			//首次加载时除了最新的还加载昨天的，因为高度不够无法触发到底部刷新加载历史内容
+			dispatch(GET_HISTORY_DATA(getStore().UIState.LoadingDate))
+			dispatch(STOP_LOADING())
 		})
 	}
 }
 
-
-
+export const GET_TODAY_DATA = ()=>{
+    return ( dispatch, getStore ) => {
+        if(getStore().today.length > 0) {
+            return;
+        }
+        getLatestStory().then(data => {
+            dispatch(GET_TODAY(data))
+        })
+    }
+}
 
 export const GET_HISTORY_DATA = (date) => {
 	return (dispatch, getStore) => {
 		getHistoryStory(date).then(data => {
-			dispatch(GET_HISTORY(data))
+			// dispatch(DECREMENT_DATE())
+			dispatch(GET_HISTORY(data.data))
+			// dispatch(STOP_LOADING())
 		})
 	}
 }
@@ -25,6 +39,7 @@ export const GET_HISTORY_DATA = (date) => {
 export const GET_HOT_DATA = ()=>{
     return (dispatch,getStore)=>{
         getHot().then(data=>{
+            console.log(data)
             dispatch(GET_HOT(data));
         })
     }
@@ -32,12 +47,10 @@ export const GET_HOT_DATA = ()=>{
 
 export const LOAD_THEMES_LIST_DATA = () => {
 	return (dispatch, getStore) => {
-        console.log('load-them')
 		if(getStore().themesList.length > 0) {
 			return;
 		}
 		getThemesList().then(data => {
-            console.log(data)
 			dispatch(LOAD_THEMES_LIST(data.data.others))
 		})
 	}

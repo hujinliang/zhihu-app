@@ -1,27 +1,24 @@
-/**
- * Created by jialao on 2016/6/28.
- */
 import React from 'react'
-import {Router,Route,IndexRoute,browserHistory} from 'react-router'
-import Main from '../containers/Main'
-import Home from '../containers/Home'
-import Detail from '../containers/Detail'
-import History from '../containers/History'
-import Hot from '../containers/Hot'
-import Themes from '../containers/Themes'
-import Today from '../containers/Today'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import MainContainer from '../containers/MainContainer'
+import StoryListContainer from '../containers/StoryListContainer'
+import ThemesContainer from '../containers/ThemesContainer'
+import DetailContainer from '../containers/DetailContainer'
+import HotContainer from '../containers/HotContainer'
+import HistoryContainer from '../containers/HistoryContainer'
+import TodayContainer from '../containers/TodayContainer'
 
 const route = (
-    <Router history={browserHistory}>
-        <Route path="/" component={Main} >
-            <IndexRoute component={Home} />
-            <Route path="theme/:themeId" component={Themes}/>
-            <Route path="detail/:detailId" component={Detail}/>
-            <Route path="today" component={Today}/>
-            <Route path="history/:historyId" component={History}/>
-            <Route path="hot" component={Hot}/>
-        </Route>
-    </Router>
+	<Router history={browserHistory}>
+		<Route path='/' component={MainContainer}>
+			<IndexRoute component={StoryListContainer} />
+			<Route path='theme/:themeId' component={ThemesContainer} />
+			<Route path='detail/:id' component={DetailContainer} />
+            <Route path="today" component={TodayContainer}/>
+            <Route path="history/:historyId" component={HistoryContainer}/>
+            <Route path="hot" component={HotContainer}/>
+		</Route>
+	</Router>
 )
 
 export default route

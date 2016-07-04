@@ -1,35 +1,24 @@
 import moment from 'moment'
 
+
 const today = (state = [],action)=>{
     switch(action.type){
         case 'GET_TODAY':
             return action.data.data.stories
         default:
             return state;
-        }
+    }
 
 }
 
 const history = (state=[],action)=>{
     switch(action.type){
         case 'GET_HISTORY':
-            return action.data.data.stories;
+            return action.data.stories;
         default:
             return state;
     }
 }
-
-
-// const mainList = (state = [], action) => {
-// 	switch(action.type) {
-// 		case 'GET_LATEST':
-// 			return action.data.data.stories
-// 		case 'GET_HISTORY':
-// 			return [...state, ...action.data.stories];
-// 		default:
-// 			return state;
-// 	}
-// }
 
 const hot = (state=[],action)=>{
     switch(action.type){
@@ -41,6 +30,16 @@ const hot = (state=[],action)=>{
 }
 
 
+const mainList = (state = [], action) => {
+	switch(action.type) {
+		case 'GET_LATEST':
+			return action.data.data.stories
+		case 'GET_HISTORY':
+			return [...state, ...action.data.stories];
+		default:
+			return state;
+	}
+}
 
 const themesList = ( state = [], action) => {
 	switch(action.type) {
@@ -114,4 +113,4 @@ const UIState = (state = initialUIState, action) => {
 	}
 }
 
-export {  detail, UIState, themesList, theme,today,history,hot }
+export { mainList, detail, UIState, themesList, theme,today,history,hot }

@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 export function getLatestStory() {
-	return axios.get('/api/list').then(function(data) {
+	return axios.get('/api/topStory').then(function(data) {
+        console.log(data)
 		return data.data
 	})
 }
@@ -29,7 +30,7 @@ export function getDetail(id) {
 export function getThemesList() {
 	return axios({
 		method: 'GET',
-		url: '/api/themeList'
+		url: '/api/themesList'
 	}).then(function(data) {
 		return data.data
 	})
@@ -44,7 +45,6 @@ export function getTheme(id) {
 		return data.data
 	})
 }
-
 export function getHot(){
     return axios({
         method:'GET',
