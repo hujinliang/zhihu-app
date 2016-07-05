@@ -8,6 +8,7 @@ import HotContainer from '../containers/HotContainer'
 import HistoryContainer from '../containers/HistoryContainer'
 import TodayContainer from '../containers/TodayContainer'
 import HomeContainer from '../containers/HomeContainer'
+import HistoryPickContainer from '../containers/HistoryPickContainer'
 
 const route = (
 	<Router history={browserHistory}>
@@ -18,6 +19,7 @@ const route = (
             <Route path="today" component={TodayContainer}/>
             <Route path="history/:historyId" component={HistoryContainer}/>
             <Route path="hot" component={HotContainer}/>
+            <Route path="historypick" component={HistoryPickContainer}/>
 		</Route>
 	</Router>
 )

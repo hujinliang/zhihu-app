@@ -39,6 +39,7 @@ class HomeContainer extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.handleToToday = this.handleToToday.bind(this)
+        this.handleToHistory = this.handleToHistory.bind(this)
     }
     getChildContext() {
         return { muiTheme: getMuiTheme({
@@ -52,6 +53,10 @@ class HomeContainer extends React.Component {
         this.context.router.push(`/today`)
     }
     
+    handleToHistory(){
+        this.context.router.push('/historypick')
+    }
+    
 
     render() {
         return (
@@ -63,7 +68,7 @@ class HomeContainer extends React.Component {
                 </div>
                 <div className="buttonContainer" style={styles.buttonContainer}>
                     <RaisedButton label="今日速查" primary={true} style={styles.button} onTouchTap={this.handleToToday} />
-                    <RaisedButton label="历史文章" primary={true} style={styles.button} />
+                    <RaisedButton label="历史文章" primary={true} style={styles.button} onTouchTap={this.handleToHistory} />
                 </div>
             </div>
         )
