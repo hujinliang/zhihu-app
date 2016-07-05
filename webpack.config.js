@@ -20,17 +20,6 @@ module.exports = {
 				loader: 'style!css!sass'
 			}
 		]
-	},
-	// proxy
-	devServer: {
-    proxy: {
-      "/api/*": {
-        target: "http://localhost:3000",
-        secure: false,
-        rewrite: function(req, options) {
-          //you can handle rewrite here if you need to
-        }
-      }
-    }
-  },
+	}
+	
 }

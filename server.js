@@ -3,6 +3,8 @@ var path = require('path')
 var axios = require('axios')
 
 var app = express()
+var port = process.env.PORT ||9000
+
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -13,6 +15,8 @@ app.use(function(req, res, next) {
     })
     next()
 })
+
+
 
 //api start
 var getListAPI = require('./config/api').getListAPI
@@ -35,6 +39,8 @@ app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
-app.listen(3000, function() {
-	console.log('App is running on port 3000.')
+
+
+app.listen(port, function() {
+	console.log('App is running on port '+port)
 })
