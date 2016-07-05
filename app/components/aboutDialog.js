@@ -2,6 +2,8 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import Avatar from 'material-ui/Avatar';
+
 
 const AboutDialog = ({
   open,
@@ -9,7 +11,7 @@ const AboutDialog = ({
 }) => {
   const actions = [
     <FlatButton
-      label="Get"
+      label="关闭"
       primary={true}
       keyboardFocused={true}
       onTouchTap={() => CLOSE_ABOUT_DIALOG()}
@@ -19,22 +21,23 @@ const AboutDialog = ({
   return (
     <div>
       <Dialog
-        title="关于作者"
+        title="关于"
         actions={actions}
         modal={false}
         open={open}
         onRequestClose={() => CLOSE_ABOUT_DIALOG()}
       >
-        此页面使用开源API制作而成，如有任何侵权可联系作者删除。
+      
+        使用知乎开源API制作，如有任何侵权可联系作者删除。
         <a
-          href="//www.github.com/troywith77"
+          href="https://github.com/HUJINLIANG"
           target="_blank"
         >
           Github
         </a>
         {" | "}
         <a
-        href="mailto:ruitang307@gmail.com"
+        href="mailto:1617451312@qq.com"
         >
           Send E-Mail
         </a>

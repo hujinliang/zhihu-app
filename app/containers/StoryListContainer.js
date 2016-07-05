@@ -99,7 +99,5 @@ export default connect(
 	mapDispatchToProps
 )(StoryListContainer)
 
-StoryListContainer.contextTypes = {
-  router: React.PropTypes.object.isRequired
-}
+
 

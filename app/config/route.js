@@ -7,11 +7,12 @@ import DetailContainer from '../containers/DetailContainer'
 import HotContainer from '../containers/HotContainer'
 import HistoryContainer from '../containers/HistoryContainer'
 import TodayContainer from '../containers/TodayContainer'
+import HomeContainer from '../containers/HomeContainer'
 
 const route = (
 	<Router history={browserHistory}>
 		<Route path='/' component={MainContainer}>
-			<IndexRoute component={StoryListContainer} />
+			<IndexRoute component={HomeContainer} />
 			<Route path='theme/:themeId' component={ThemesContainer} />
 			<Route path='detail/:id' component={DetailContainer} />
             <Route path="today" component={TodayContainer}/>

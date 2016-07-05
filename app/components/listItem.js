@@ -17,9 +17,17 @@ const StoryListItem = ({
 	story,
 	onClick
 }) => {
-	const imageUrl = story.images ? convertImageUrl(story.images[0]) : ''
+	// const imageUrl = story.images ? convertImageUrl(story.images[0]) : convertImageUrl(story.thumbnail)
+
+    var imageUrl = "";
+    if(story.thumbnail){
+        imageUrl = convertImageUrl(story.thumbnail)
+    }else if(story.images){
+        imageUrl = convertImageUrl(story.images[0])
+    }
+    const id = story.id||story.news_id
 	return (
-		<div onClick={onClick.bind(null, story.id)}>
+		<div onClick={onClick.bind(null, id)}>
 			<ListItem
 		      leftAvatar={<Avatar src={imageUrl} />}
 		      primaryText={story.title} />

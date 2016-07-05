@@ -6,7 +6,7 @@ export const GET_LATEST_DATA = () => {
 			return;
 		}
 		getLatestStory().then(data => {
-            console.log(data)
+
 			dispatch(GET_LATEST(data))
 			//首次加载时除了最新的还加载昨天的，因为高度不够无法触发到底部刷新加载历史内容
 			dispatch(GET_HISTORY_DATA(getStore().UIState.LoadingDate))
@@ -39,7 +39,7 @@ export const GET_HISTORY_DATA = (date) => {
 export const GET_HOT_DATA = ()=>{
     return (dispatch,getStore)=>{
         getHot().then(data=>{
-            console.log(data)
+            // console.log(data)
             dispatch(GET_HOT(data));
         })
     }
@@ -67,6 +67,7 @@ export const GET_DETAIL_DATA = (id) => {
 export const GET_THEME_DATA = (id) => {
 	return (dispatch => {
 		getTheme(id).then(data => {
+            console.log(data)
 			dispatch(GET_THEME(data.data))
 		})
 	})

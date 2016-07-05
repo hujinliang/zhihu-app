@@ -7,6 +7,8 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import baseTheme from 'material-ui/styles/baseThemes/DarkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {purple100, purple500, purple700} from 'material-ui/styles/colors';
+
 
 import AboutDialog from './aboutDialog'
 import Drawer from './drawer'
@@ -21,8 +23,8 @@ const AppBarIconMenu = ({
 }) => {
   	return (
 	  <AppBar
-	    title="知乎日报"
-	    titleStyle={{textAlign: 'center'}}
+	    title="知乎"
+	    titleStyle={{textAlign: 'left'}}
 	    style={{position: 'fixed'}}
 	    iconElementLeft={
 	    	<IconButton onClick={handleClick}><ExpandMoreIcon /></IconButton>
@@ -46,12 +48,18 @@ class Header extends React.Component {
 		this.handleClickBtn = this.handleClickBtn.bind(this)
 		this.handleChangeThemes = this.handleChangeThemes.bind(this)
 		this.handleCloseToHome = this.handleCloseToHome.bind(this)
+        this.handleCloseToHot = this.handleCloseToHot.bind(this)
 	}
 	componentDidMount() {
 		this.props.actions.LOAD_THEMES_LIST_DATA()
 	}
 	getChildContext() {
-        return { muiTheme: getMuiTheme(baseTheme) };
+        return { muiTheme: getMuiTheme({
+            palette: {
+                primary1Color: purple500,
+                primary2Color: purple700,
+                primary3Color: purple100,
+            }}) };
     }
 	handleClickBtn() {
 		this.props.actions.OPEN_DRAWER()
@@ -62,6 +70,9 @@ class Header extends React.Component {
 	handleCloseToHome() {
 		this.context.router.push(`/`)
 	}
+    handleCloseToHot(){
+        this.context.router.push('/hot')
+    }
 	render() {
 		return (
 			<header>
@@ -82,6 +93,7 @@ class Header extends React.Component {
 					list={this.props.themesList}
 					onChangeRouter={this.handleChangeThemes}
 					handleCloseToHome={this.handleCloseToHome}
+                    handleCloseToHot={this.handleCloseToHot}
 				/>
 			</header>
 		)
